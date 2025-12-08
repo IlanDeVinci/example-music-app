@@ -20,4 +20,6 @@ class Track extends Model
         'play_count',
         'secret'
     ];
+
+    protected $hidden = [];
 }

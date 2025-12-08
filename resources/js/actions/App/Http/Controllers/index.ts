@@ -1,6 +1,10 @@
+import HomeController from './HomeController'
+import TrackController from './TrackController'
 import Settings from './Settings'
 const Controllers = {
-    Settings: Object.assign(Settings, Settings),
+    HomeController: Object.assign(HomeController, HomeController),
+TrackController: Object.assign(TrackController, TrackController),
+Settings: Object.assign(Settings, Settings),
 }
 
 export default Controllers

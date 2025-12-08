@@ -1,7 +1,7 @@
-import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../../wayfinder'
 /**
-* @see \HomeController::test
- * @see [unknown]:0
+* @see \App\Http\Controllers\HomeController::test
+ * @see app/Http/Controllers/HomeController.php:9
  * @route '/test'
  */
 export const test = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -15,8 +15,8 @@ test.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \HomeController::test
- * @see [unknown]:0
+* @see \App\Http\Controllers\HomeController::test
+ * @see app/Http/Controllers/HomeController.php:9
  * @route '/test'
  */
 test.url = (options?: RouteQueryOptions) => {
@@ -24,8 +24,8 @@ test.url = (options?: RouteQueryOptions) => {
 }
 
 /**
-* @see \HomeController::test
- * @see [unknown]:0
+* @see \App\Http\Controllers\HomeController::test
+ * @see app/Http/Controllers/HomeController.php:9
  * @route '/test'
  */
 test.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -33,8 +33,8 @@ test.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     method: 'get',
 })
 /**
-* @see \HomeController::test
- * @see [unknown]:0
+* @see \App\Http\Controllers\HomeController::test
+ * @see app/Http/Controllers/HomeController.php:9
  * @route '/test'
  */
 test.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -43,8 +43,8 @@ test.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \HomeController::test
- * @see [unknown]:0
+* @see \App\Http\Controllers\HomeController::test
+ * @see app/Http/Controllers/HomeController.php:9
  * @route '/test'
  */
     const testForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -53,8 +53,8 @@ test.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \HomeController::test
- * @see [unknown]:0
+* @see \App\Http\Controllers\HomeController::test
+ * @see app/Http/Controllers/HomeController.php:9
  * @route '/test'
  */
         testForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -62,8 +62,8 @@ test.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
             method: 'get',
         })
             /**
-* @see \HomeController::test
- * @see [unknown]:0
+* @see \App\Http\Controllers\HomeController::test
+ * @see app/Http/Controllers/HomeController.php:9
  * @route '/test'
  */
         testForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

@@ -15,7 +15,7 @@ export default defineConfig({
         wayfinder({
             formVariants: true,
         }),
-        vue({
+        vue({   
             template: {
                 transformAssetUrls: {
                     base: null,

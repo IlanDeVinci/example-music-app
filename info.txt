@@ -1,0 +1,5 @@
+laravel debugbar composer require barryvdh/laravel-debugbar -dev
+doc api: compose require knuckleswtf/scribe
+linter laravel tightenco/tlint
+npm install eslint-plugin-vue
+npm install moment

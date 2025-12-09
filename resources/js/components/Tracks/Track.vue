@@ -1,11 +1,12 @@
 <template>
     <div
+        @click="handleListen"
         class="flex max-w-3xl gap-6 rounded-xl bg-white p-6 shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
     >
         <!-- Track Image -->
         <div class="relative flex-shrink-0">
             <img
-                :src="track.image || '/img/playicon.png'"
+                :src="'storage/' + track.image || '/img/playicon.png'"
                 :alt="`${track.title} album art`"
                 class="h-45 w-45 rounded-lg bg-gray-100 object-cover"
             />
@@ -39,7 +40,7 @@
             <!-- Audio Player -->
             <div class="mt-auto">
                 <audio
-                    :src="track.audio"
+                    :src="'storage/' + track.audio"
                     controls
                     controlsList="nodownload"
                     class="h-10 w-full"
@@ -70,12 +71,37 @@
                     <TrashIcon :size="20" />
                     Delete
                 </button>
+                <Link
+                    :href="route('tracks.edit', { track: track })"
+                    flex
+                    cursor-pointer
+                    items-center
+                    gap-2
+                    rounded-lg
+                    border-2
+                    border-red-200
+                    bg-red-50
+                    px-5
+                    py-2.5
+                    text-sm
+                    font-semibold
+                    text-red-600
+                    transition-all
+                    hover:border-red-300
+                    hover:bg-red-100
+                    ><button
+                        class="flex cursor-pointer items-center gap-2 rounded-lg border-2 bg-blue-300 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-blue-400"
+                    >
+                        Modifier
+                    </button></Link
+                >
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { Link } from '@inertiajs/vue3';
 import HeartIcon from '../Icons/HeartIcon.vue';
 import PlayIcon from '../Icons/PlayIcon.vue';
 import TrashIcon from '../Icons/TrashIcon.vue';
@@ -86,6 +112,7 @@ export default {
         PlayIcon,
         HeartIcon,
         TrashIcon,
+        Link,
     },
     props: {
         track: {
@@ -99,14 +126,17 @@ export default {
         };
     },
     methods: {
+        handleDelete() {
+            route('tracks.destroy', { track: this.track.slug });
+        },
         toggleLike() {
             this.isLiked = !this.isLiked;
             this.$emit('like', this.track.slug);
         },
-        handleDelete() {
-            this.$emit('delete', this.track.slug);
+        handleListen() {
+            this.$emit('listen', this.track);
         },
     },
-    emits: ['like', 'delete'],
+    emits: ['like', 'delete', 'listen'],
 };
 </script>

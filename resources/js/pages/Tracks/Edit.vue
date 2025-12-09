@@ -34,7 +34,7 @@
                 }}</small>
                 <input
                     type="submit"
-                    value="Create Track"
+                    value="Modifier Track"
                     @click.prevent="submit"
                     :disabled="form.processing"
                     class="cursor-pointer text-white"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Track;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 
@@ -72,9 +73,8 @@ class TrackController extends Controller
 
     public function destroy(Track $track)
     {
-        // delete just sets is_visible to false
-        $track->is_visible = false;
-        $track->save();
+        Storage::delete([$track->image, $track->audio]);
+        $track->delete();
         return redirect()->route('tracks.index')->with('success', 'Track deleted successfully.');
     }
 }

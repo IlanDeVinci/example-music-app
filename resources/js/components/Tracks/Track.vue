@@ -53,7 +53,7 @@
             <!-- Action Buttons -->
             <div class="mt-2 flex gap-3">
                 <button
-                    @click="toggleLike"
+                    @click.stop="toggleLike"
                     :class="[
                         'flex cursor-pointer items-center gap-2 rounded-lg border-2 px-5 py-2.5 text-sm font-semibold transition-all',
                         isLiked
@@ -65,13 +65,21 @@
                     Like
                 </button>
                 <button
-                    @click="handleDelete"
+                    @click.stop="handleDelete"
                     class="flex cursor-pointer items-center gap-2 rounded-lg border-2 border-red-200 bg-red-50 px-5 py-2.5 text-sm font-semibold text-red-600 transition-all hover:border-red-300 hover:bg-red-100"
                 >
                     <TrashIcon :size="20" />
                     Delete
                 </button>
                 <Link
+                    :href="route('tracks.destroy', { track: track })"
+                    method="delete"
+                    as="button"
+                    preserve-scroll
+                    value="Delete"
+                ></Link>
+                <Link
+                    @click.stop
                     :href="route('tracks.edit', { track: track })"
                     flex
                     cursor-pointer
@@ -127,7 +135,13 @@ export default {
     },
     methods: {
         handleDelete() {
-            route('tracks.destroy', { track: this.track.slug });
+            this.$inertia.delete(
+                route('tracks.destroy', { track: this.track }),
+                {
+                    preserveState: true,
+                    preserveScroll: true,
+                },
+            );
         },
         toggleLike() {
             this.isLiked = !this.isLiked;

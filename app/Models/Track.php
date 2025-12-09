@@ -22,4 +22,9 @@ class Track extends Model
     ];
 
     protected $hidden = [];
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

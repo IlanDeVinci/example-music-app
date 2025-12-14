@@ -61,7 +61,7 @@ export default {
             form: useForm({
                 title: this.$props.track.title,
                 artist: this.$props.track.artist,
-                id: this.$props.track.id,
+                slug: this.$props.track.slug,
             }),
         };
     },
@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         submit() {
-            this.form.put(route('tracks.update', { track: this.form.id }), {
+            this.form.put(route('tracks.update', { track: this.form.slug }), {
                 preserveState: true,
                 preserveScroll: true,
             });

@@ -4,21 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Track extends Model
+class Playlist extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'slug',
+        'user_id',
         'title',
-        'artist',
-        'image',
-        'audio',
-        'is_visible',
-        'play_count',
-        'secret'
     ];
 
     protected $hidden = [];
@@ -29,11 +25,19 @@ class Track extends Model
     }
 
     /**
-     * Get the playlists that contain this track.
+     * Get the user that owns the playlist.
      */
-    public function playlists(): BelongsToMany
+    public function user(): BelongsTo
     {
-        return $this->belongsToMany(Playlist::class, 'playlist_track')
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the tracks in this playlist.
+     */
+    public function tracks(): BelongsToMany
+    {
+        return $this->belongsToMany(Track::class, 'playlist_track')
             ->withPivot('play_count')
             ->withTimestamps();
     }

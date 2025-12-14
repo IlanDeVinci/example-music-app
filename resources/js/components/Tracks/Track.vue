@@ -64,45 +64,22 @@
                     <HeartIcon :size="20" :filled="isLiked" />
                     Like
                 </button>
-                <button
-                    @click.stop="handleDelete"
-                    class="flex cursor-pointer items-center gap-2 rounded-lg border-2 border-red-200 bg-red-50 px-5 py-2.5 text-sm font-semibold text-red-600 transition-all hover:border-red-300 hover:bg-red-100"
-                >
-                    <TrashIcon :size="20" />
-                    Delete
-                </button>
-                <Link
-                    :href="route('tracks.destroy', { track: track })"
-                    method="delete"
-                    as="button"
-                    preserve-scroll
-                    value="Delete"
-                ></Link>
-                <Link
-                    @click.stop
-                    :href="route('tracks.edit', { track: track })"
-                    flex
-                    cursor-pointer
-                    items-center
-                    gap-2
-                    rounded-lg
-                    border-2
-                    border-red-200
-                    bg-red-50
-                    px-5
-                    py-2.5
-                    text-sm
-                    font-semibold
-                    text-red-600
-                    transition-all
-                    hover:border-red-300
-                    hover:bg-red-100
-                    ><button
+                <template v-if="$page.props.auth.user?.admin">
+                    <button
+                        @click.stop="handleDelete"
+                        class="flex cursor-pointer items-center gap-2 rounded-lg border-2 border-red-200 bg-red-50 px-5 py-2.5 text-sm font-semibold text-red-600 transition-all hover:border-red-300 hover:bg-red-100"
+                    >
+                        <TrashIcon :size="20" />
+                        Delete
+                    </button>
+                    <Link
+                        @click.stop
+                        :href="route('tracks.edit', { track: track })"
                         class="flex cursor-pointer items-center gap-2 rounded-lg border-2 bg-blue-300 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-blue-400"
                     >
                         Modifier
-                    </button></Link
-                >
+                    </Link>
+                </template>
             </div>
         </div>
     </div>
